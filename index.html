@@ -75,9 +75,10 @@
           new Dog("Libby Sheffield", [ 7,15,1992], [ 9,13,2013], "Mutt", "us")
         ];
         var table = new Table("table1", data, headings);
-        table.styleColumn("born", {textAlign:right});
-        table.styleColumn("died", {textAlign:right});
-        table.styleColumn("age", {textAlign:right});
+        table.styleColumn("born", "textAlign", "right");
+        table.styleColumn("died", "textAlign", "right");
+        table.styleColumn("age", "textAlign", "right");
+        table.styleRow(3, "background", "yellow");
       </script>
     </section>
   </body>
