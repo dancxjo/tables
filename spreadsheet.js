@@ -8,6 +8,16 @@ function Table(tableId, data, headings) {
   
   this.table.className += " spreadsheet";
   
+  this.formatCell = function (row, col, formatFunc) {
+    this.data[row][col].format = formatFunc;
+  }
+  
+  this.formatColumn = function (col, formatFunc) {
+    for (var row in this.data) {
+      this.data[row][col].format = formatFunc;
+    }
+  }
+  
   this.clear = function () {
     for (var index=this.table.rows.length - 1; index >= 0; index--) {
       this.table.deleteRow(index);
