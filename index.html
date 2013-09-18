@@ -26,7 +26,7 @@
           this.name = {content:name};
           this.born = {content:new Date(born[2], born[0], born[1],0,0,0), format:slashDateUS};
           this.died = {content:new Date(died[2], died[0], died[1],0,0,0), format:slashDateUS};
-          this.age = {content:died - born};
+          this.age = {content:died - born, format:function(diff) {return diff/(1000*60*60*24);}};
           this.breed = {content:breed};
           this.country = {content:country, format:showFlag};
         }
@@ -50,7 +50,7 @@
         };
         
         function showFlag(code) {
-          return "<img src='"+codes[code][1]+"'/>"+codes[code][0];
+          return "<img src='"+codes[code][1]+"'/> "+codes[code][0];
         }
       
         var headings = {name:"Name", born:"Born", died:"Died", age:"Age", breed:"Breed", country:"Country of Origin"};
