@@ -119,44 +119,45 @@ function Table(tableId, data, headings) {
         cell.key = this.order[colIndex];
         cell.column = colIndex;
         this.updateCell(cell, rowIndex, this.order[colIndex]);
-        
-        // Make editable
-        if (!this.data[rowIndex][this.order[colIndex]].frozen) {
-          cell.setAttribute("contenteditable", true);
-          // One function for enter
-          cell.onkeypress = function(event) {
-              var key = event.keyCode || event.charCode;
-              if (key == 13) {
-                  // Store the new value in the data
-                  // Overwrite the content
-                  this.table.data[this.row][this.key].content = this.innerHTML;
-
-                  this.blur();
-                  
-                  this.table.updateCell(this, this.row, this.key);
-                  
-                  return false;
-              }
-          };
-
-          // Another for escape
-          cell.onkeyup = function(event) {
-              var key = event.keyCode || event.charCode;
-              if (key == 27) {
-                  // Discard change
-                  this.table.updateCell(this, this.row, this.key);
-                  this.blur();
-                  return false;
-              }
-          };
-        }
       }
     }
   };
   
   this.updateCell = function (cell, row, key) {
-    cell.innerHTML = this.format(row, key);
+    var editContent = document.createElement("span");
+    cell.appendChild(editContent);
+    editContent.innerHTML = this.format(row, key);
     this.styleCell(cell, row, key);
+    // Make editable
+    if (!this.data[rowIndex][this.order[colIndex]].frozen) {
+      editContent.setAttribute("contenteditable", true);
+      // One function for enter
+      editContent.onkeypress = function(event) {
+          var key = event.keyCode || event.charCode;
+          if (key == 13) {
+              // Store the new value in the data
+              // Overwrite the content
+              this.table.data[this.row][this.key].content = this.innerHTML;
+
+              this.blur();
+              
+              this.table.updateCell(this, this.row, this.key);
+              
+              return false;
+          }
+      };
+
+      // Another for escape
+      editContent.onkeyup = function(event) {
+          var key = event.keyCode || event.charCode;
+          if (key == 27) {
+              // Discard change
+              this.table.updateCell(this, this.row, this.key);
+              this.blur();
+              return false;
+          }
+      };
+    }
   }
   
   this.format = function (row, key) {
