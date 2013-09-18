@@ -151,7 +151,7 @@ function Table(tableId, data, headings) {
               var key = event.keyCode || event.charCode;
               if (key == 27) {
                   // Discard change
-                  this.innerHTML = this.table.format(this.row, this.key);
+                  this.table.updateCell(this, this.row, this.column);
                   this.blur();
                   return false;
               }
