@@ -116,14 +116,7 @@ function Table(tableId, data, headings) {
         cell.row = rowIndex;
         cell.key = this.order[colIndex];
         cell.column = colIndex;
-        cell.innerHTML = this.format(rowIndex, this.order[colIndex]);
-        
-        // Do styling
-        if (this.data[rowIndex][this.order[colIndex]].style !== undefined) {
-          for (var key in this.data[rowIndex][this.order[colIndex]].style) {
-            cell.style[key] = this.data[rowIndex][this.order[colIndex]].style[key];
-          }
-        }
+        this.updateCell(cell, rowIndex, this.order[colIndex]);
         
         // Make editable
         if (!this.data[rowIndex][this.order[colIndex]].frozen) {
@@ -146,6 +139,9 @@ function Table(tableId, data, headings) {
                   this.table.data[this.row][this.key].format = format;
 
                   this.blur();
+                  
+                  this.table.updateCell(this, this.row, this.column);
+                  
                   return false;
               }
           };
@@ -165,6 +161,11 @@ function Table(tableId, data, headings) {
     }
   };
   
+  this.updateCell = function (cell, row, col) {
+    cell.innerHTML = this.format(row, col);
+    this.styleCell(cell, row, col);
+  }
+  
   this.format = function (row, col) {
     // Takes data at row,col and formats it
     if (this.data[row][col].format === undefined) {
@@ -172,6 +173,15 @@ function Table(tableId, data, headings) {
     } else {
       return this.data[row][col].format(this.data[row][col]);
     }
+  }
+  
+  this.styleCell = function (cell, row, col) {
+    // Do styling
+    if (this.data[row][col].style !== undefined) {
+      for (var key in this.data[row][col].style) {
+        cell.style[key] = this.data[row][col].style[key];
+      }
+    }  
   }
   
   this.update(); // Go ahead and fill the table with data
