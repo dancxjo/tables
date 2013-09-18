@@ -129,7 +129,7 @@ function Table(tableId, data, headings) {
         if (!this.data[rowIndex][this.order[colIndex]].frozen) {
           cell.setAttribute("contenteditable", true);
           // One function for enter
-          cell.onkeyup = function(event) {
+          cell.onkeypress = function(event) {
               var key = event.keyCode || event.charCode;
               if (key == 13) {
                   alert(this.row + " " + this.key);
@@ -140,7 +140,7 @@ function Table(tableId, data, headings) {
           };
 
           // Another for escape
-          cell.onkeypress = function(event) {
+          cell.onkeyup = function(event) {
               var key = event.keyCode || event.charCode;
               if (key == 27) {
                   this.innerHTML = this.table.data[this.row][this.key];
