@@ -3,6 +3,8 @@ function Table(tableId, data, headings) {
   this.data = data;
   this.headings = headings; // firstname: "First Name", lastname: "Last Name"...
   this.order = new Array(); // 0: firstname 1: lastname...
+  this.sortCol = -1;
+  this.revSort = false;
   
   this.table.className += " spreadsheet";
   
@@ -19,6 +21,13 @@ function Table(tableId, data, headings) {
       var cell = document.createElement("th");
       row.appendChild(cell);
       cell.innerHTML = this.headings[index];
+      cell.index = index;
+      cell.table = this;
+      
+      cell.onClick = function () {
+        alert(this.index);
+      }
+      
       this.order.push(index);
     }
   }
