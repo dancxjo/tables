@@ -11,7 +11,7 @@ function Table(tableId, data, headings) {
   
   this.makeHeadings = function () {
     var header = this.table.createTHead();
-    var row = this.table.insertRow(0);
+    var row = header.insertRow(0);
     for (var index in this.headings) {
       var cell = row.insertCell(-1);
       cell.innerHTML = this.headings[index];
