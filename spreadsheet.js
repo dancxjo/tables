@@ -3,6 +3,8 @@ function Table(tableId, data, headings) {
   this.data = data;
   this.headings = headings;
   
+  this.table.className += " spreadsheet";
+  
   this.clear = function () {
     for (var index=this.table.rows.length - 1; index >= 0; index--) {
     	this.table.deleteRow(index);
