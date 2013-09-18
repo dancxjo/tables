@@ -11,9 +11,9 @@ function Table(tableId, data, headings) {
   this.clear = function () {
     alert("Clearing table");
     for (var index=this.table.rows.length - 1; index >= 0; index--) {
-    	this.table.deleteRow(index);
-  	}
-  	alert("Table cleared");
+      this.table.deleteRow(index);
+    }
+    alert("Table cleared");
   };
   
   this.makeHeadings = function () {
