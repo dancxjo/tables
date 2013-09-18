@@ -65,10 +65,20 @@ function Table(tableId, data, headings) {
       var row = this.table.insertRow(-1);
       for (var colIndex in this.order) {
         var cell = row.insertCell(colIndex);
-        cell.innerHTML = this.data[rowIndex][this.order[colIndex]];
+        //cell.innerHTML = this.data[rowIndex][this.order[colIndex]];
+        cell.innerHTML = this.format(rowIndex, this.order[colIndex);
       }
     }
   };
+  
+  this.format = function (row, col) {
+    // Takes data at row,col and formats it
+    if (this.data[row][col].format === undefined) {
+      return this.data[row][col];
+    } else {
+      return this.data[row][col].format(this.data[row][col]);
+    }
+  }
   
   this.update(); // Go ahead and fill the table with data
 }
