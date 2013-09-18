@@ -131,23 +131,8 @@ function Table(tableId, data, headings) {
               var key = event.keyCode || event.charCode;
               if (key == 13) {
                   // Store the new value in the data
-                  
-                  // Save the style and formatting
-                  var style = new Array();
-                  for (var attr in this.table.data[this.row][this.key].style) {
-                    style[attr] = this.table.data[this.row][this.key].style[attr];
-                  }
-                  var format = this.table.data[this.row][this.key].format;
-
                   // Overwrite the content
-                  this.table.data[this.row][this.key] = this.innerHTML;
-                  
-                  // Now restore the formatting and style
-                  this.table.initStyle(this.row, this.key);
-                  for (var attr in style) {
-                     this.table.data[this.row][this.key].style[attr] = style[attr];
-                  }
-                  this.table.data[this.row][this.key].format = format;
+                  this.table.data[this.row][this.key].content = this.innerHTML;
 
                   this.blur();
                   
@@ -180,9 +165,9 @@ function Table(tableId, data, headings) {
   this.format = function (row, key) {
     // Takes data at row,col and formats it
     if (this.data[row][key].format === undefined) {
-      return this.data[row][key];
+      return this.data[row][key].content;
     } else {
-      return this.data[row][key].format(this.data[row][key]);
+      return this.data[row][key].format(this.data[row][key].content);
     }
   }
   
