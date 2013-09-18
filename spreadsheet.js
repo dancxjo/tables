@@ -24,7 +24,7 @@ function Table(tableId, data, headings) {
       cell.index = index;
       cell.table = this;
       
-      cell.onClick = function () {
+      cell.onclick = function () {
         alert(this.index);
       }
       
