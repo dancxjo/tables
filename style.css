@@ -1,5 +1,6 @@
 .spreadsheet th {
 	cursor: pointer;
+	border-bottom: 2px solid #22f;
 }
 
 .spreadsheet th:hover {
