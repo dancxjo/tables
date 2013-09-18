@@ -124,9 +124,10 @@ function Table(tableId, data, headings) {
         // Make editable
         if (!this.data[rowIndex][this.order[colIndex]].frozen) {
           cell.setAttribute("contenteditable", true);
-          cell.onkeydown = function(event) {
+          cell.onkeypress = function(event) {
               if (event.keyCode == 13 || event.charCode == 13) {
-                  return true;
+                  this.blur();
+                  return false;
               } 
           };
         }
