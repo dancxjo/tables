@@ -112,10 +112,13 @@ function Table(tableId, data, headings) {
       var row = this.table.insertRow(-1);
       for (var colIndex in this.order) {
         var cell = row.insertCell(colIndex);
-        //cell.innerHTML = this.data[rowIndex][this.order[colIndex]];
         cell.innerHTML = this.format(rowIndex, this.order[colIndex]);
-        for (var key in this.data[rowIndex][colIndex].style) {
-          cell.style[key] = value;
+        
+        // Do styling
+        if (this.data[row][col].style === undefined) {
+          for (var key in this.data[rowIndex][colIndex].style) {
+            cell.style[key] = value;
+          }
         }
       }
     }
