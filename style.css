@@ -1,10 +1,10 @@
-#spreadsheet thead td, #spreadsheet th {
+.spreadsheet th {
 	cursor: pointer;
 	background: #ddd;
 	font-weight: normal;
 }
 
-#spreadsheet th.sorted {
+.spreadsheet th.sorted {
 	font-weight: bold;
 	background: #ccc;
 }
