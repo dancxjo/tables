@@ -129,7 +129,7 @@ function Table(tableId, data, headings) {
     editContent.innerHTML = this.format(row, key);
     this.styleCell(cell, row, key);
     // Make editable
-    if (!this.data[rowIndex][this.order[colIndex]].frozen) {
+    if (!this.data[row][this.order[key]].frozen) {
       editContent.setAttribute("contenteditable", true);
       // One function for enter
       editContent.onkeypress = function(event) {
@@ -138,9 +138,7 @@ function Table(tableId, data, headings) {
               // Store the new value in the data
               // Overwrite the content
               this.table.data[this.row][this.key].content = this.innerHTML;
-
               this.blur();
-              
               this.table.updateCell(this, this.row, this.key);
               
               return false;
