@@ -15,7 +15,8 @@ function Table(tableId, data, headings) {
     var header = this.table.createTHead();
     var row = header.insertRow(0);
     for (var index in this.headings) {
-      var cell = row.insertCell(-1);
+      var cell = document.createElement("th");
+      row.appendChild(cell);
       cell.innerHTML = this.headings[index];
     }
   }
