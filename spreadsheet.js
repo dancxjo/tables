@@ -8,28 +8,28 @@ function Table(tableId, data, headings) {
   
   this.table.className += " spreadsheet";
   
-  this.formatCell = function (row, col, formatFunc) {
-    this.data[row][col].format = formatFunc;
+  this.formatCell = function (row, key, formatFunc) {
+    this.data[row][key].format = formatFunc;
     this.update();
   }
   
   this.formatRow = function (row, formatFunc) {
-    for (var col in this.data[row]) {
-      this.data[row][col].format = formatFunc;
+    for (var key in this.data[row]) {
+      this.data[row][key].format = formatFunc;
     }
     this.update();
   }
   
-  this.formatColumn = function (col, formatFunc) {
+  this.formatColumn = function (key, formatFunc) {
     for (var row in this.data) {
-      this.data[row][col].format = formatFunc;
+      this.data[row][key].format = formatFunc;
     }
     this.update();
   }
   
-  this.initStyle = function (row, col) {
-    if (this.data[row][col].style === undefined) {
-      this.data[row][col].style = new Array();
+  this.initStyle = function (row, key) {
+    if (this.data[row][key].style === undefined) {
+      this.data[row][key].style = new Array();
     }
   }
   
@@ -138,6 +138,7 @@ function Table(tableId, data, headings) {
                   this.table.data[this.row][this.key].style = style;
                   this.table.data[this.row][this.key].format = format;
 
+                  alert(format);
                   alert(style);
 
                   this.blur();
