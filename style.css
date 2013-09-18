@@ -4,6 +4,7 @@
 
 .spreadsheet td {
 	padding: 3px;
+	border: 1px solid #ddd;
 }
 .spreadsheet th {
 	cursor: pointer;
