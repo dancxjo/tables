@@ -12,10 +12,10 @@
       <script>
         var headings = {firstname:"First", lastname:"Last", birthdate:"Birthdate", eyecolor:"Eye Color"};
         var data = [
-          {firstname:"John", lastname:"Smith", birthdate:new Date(1942,3,1,0,0,0), eyecolor:"blue"},
-          {firstname:"Jane", lastname:"Johson", birthdate:new Date(1967,6,17,0,0,0), eyecolor:"brown"},
-          {firstname:"Ian", lastname:"McPherson", birthdate:new Date(1931,1,30,0,0,0), eyecolor:"green"},
-          {firstname:"Jackie", lastname:"Jackson", birthdate:new Date(1990,2,10,0,0,0), eyecolor:"brown"}
+          {firstname:{content:"John"}, lastname:{content:"Smith"}, birthdate:{content:new Date(1942,3,1,0,0,0)}, eyecolor:{content:"blue", style:{color:"blue"}}},
+          {firstname:{content:"Adam"}, lastname:{content:"Johanson"}, birthdate:{content:new Date(1967,6,17,0,0,0)}, eyecolor:{content:"brown"}},
+          {firstname:{content:"Ian"}, lastname:{content:"McPherson"}, birthdate:{content:new Date(1931,1,30,0,0,0)}, eyecolor:{content:"green"}},
+          {firstname:{content:"Zeke"}, lastname:{content:"Yesler"}, birthdate:{content:new Date(1990,2,10,0,0,0)}, eyecolor:{content:"brown"}}
         ];
         var table = new Table("table1", data, headings);
         table.formatColumn("birthdate", function (date) {
