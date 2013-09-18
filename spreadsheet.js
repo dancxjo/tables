@@ -9,15 +9,13 @@ function Table(tableId, data, headings) {
   this.table.className += " spreadsheet";
   
   this.clear = function () {
-    alert("Clearing table");
     for (var index=this.table.rows.length - 1; index >= 0; index--) {
       this.table.deleteRow(index);
     }
-    alert("Table cleared");
   };
   
   this.makeHeadings = function () {
-    //var header = this.table.createTHead();
+    this.order = new Array();
     var row = this.table.insertRow(0);
     for (var index in this.headings) {
       var cell = document.createElement("th");
