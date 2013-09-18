@@ -71,6 +71,11 @@ function Table(tableId, data, headings) {
       cell.index = index;
       cell.table = this;
       
+      // Prevent editting in IE and Opera
+      cell.onfocus = function () {
+        this.blur();
+      }
+      
       cell.onclick = function () {
         if (this.table.sortCol != this.index) {
           this.table.sortCol = this.index;
