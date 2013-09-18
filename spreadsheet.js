@@ -28,29 +28,29 @@ function Table(tableId, data, headings) {
   }
   
   this.initStyle = function (row, key) {
-    if (this.data[row][key].style === undefined) {
-      this.data[row][key].style = new Array();
+    if (this.data[row][key].styling === undefined) {
+      this.data[row][key].styling = new Array();
     }
   }
   
-  this.styleCell = function (row, col, key, value) {
-    this.initStyle(row, col);
-    this.data[row][col].style[key] = value;
+  this.styleCell = function (row, key, attr, value) {
+    this.initStyle(row, key);
+    this.data[row][key].styling[attr] = value;
     this.update();
   }
   
-  this.styleRow = function (row, key, value) {
-    for (var col in this.data[row]) {
-      this.initStyle(row, col);
-      this.data[row][col].style[key] = value;
+  this.styleRow = function (row, attr, value) {
+    for (var key in this.data[row]) {
+      this.initStyle(row, key);
+      this.data[row][key].styling[attr] = value;
     }
     this.update();
   }
   
-  this.styleColumn = function (col, key, value) {
+  this.styleColumn = function (key, attr, value) {
     for (var row in this.data) {
-      this.initStyle(row, col);
-      this.data[row][col].style[key] = value;
+      this.initStyle(row, key);
+      this.data[row][col].styling[attr] = value;
     }
     this.update();
   }
@@ -133,16 +133,16 @@ function Table(tableId, data, headings) {
                   // Store the new value in the data
                   
                   // Save the style and formatting
-                  var style = this.table.data[this.row][this.key].style;
+                  var style = this.table.data[this.row][this.key].styling;
                   var format = this.table.data[this.row][this.key].format;
                   
-                  alert(this.table.data[this.row][this.key].style);
+                  alert(this.table.data[this.row][this.key].styling);
                   alert(style);
                   // Overwrite the content
                   this.table.data[this.row][this.key] = this.innerHTML;
                   
                   // Now restore the formatting and style
-                  this.table.data[this.row][this.key].style = style;
+                  this.table.data[this.row][this.key].styling = style;
                   this.table.data[this.row][this.key].format = format;
 
                   alert(format);
@@ -187,9 +187,9 @@ function Table(tableId, data, headings) {
   
   this.styleCell = function (cell, row, key) {
     // Do styling
-    if (this.data[row][key].style !== undefined) {
-      for (var index in this.data[row][key].style) {
-        cell.style[index] = this.data[row][key].style[index];
+    if (this.data[row][key].styling !== undefined) {
+      for (var index in this.data[row][key].styling) {
+        cell.style[index] = this.data[row][key].styling[index];
       }
     }  
   }
