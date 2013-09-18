@@ -1,4 +1,4 @@
-spreadsheet.js
+tables
 ==============
 
-A spreadsheet in Javascript
+Sortable, editable tables in Javascript
