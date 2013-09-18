@@ -127,6 +127,7 @@ function Table(tableId, data, headings) {
           cell.onkeydown = function(event) {
               if (event.keyCode == 13 || event.charCode == 13) {
                   alert("Pressed enter");
+                  return false;
               } 
           };
         }
