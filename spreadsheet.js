@@ -143,6 +143,7 @@ function Table(tableId, data, headings) {
                   this.table.data[this.row][this.key] = this.innerHTML;
                   
                   // Now restore the formatting and style
+                  this.table.data[this.row][this.key].style = new Array();
                   for (var attr in style) {
                      this.table.data[this.row][this.key].style[attr] = style[attr];
                   }
