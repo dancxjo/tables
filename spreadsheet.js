@@ -10,12 +10,14 @@ function Table(tableId, data, headings) {
   
   this.formatCell = function (row, col, formatFunc) {
     this.data[row][col].format = formatFunc;
+    this.update();
   }
   
   this.formatColumn = function (col, formatFunc) {
     for (var row in this.data) {
       this.data[row][col].format = formatFunc;
     }
+    this.update();
   }
   
   this.clear = function () {
