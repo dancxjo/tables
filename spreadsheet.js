@@ -138,6 +138,8 @@ function Table(tableId, data, headings) {
                   this.table.data[this.row][this.key].style = style;
                   this.table.data[this.row][this.key].format = format;
 
+                  alert(style);
+
                   this.blur();
                   
                   this.table.updateCell(this, this.row, this.key);
