@@ -120,6 +120,11 @@ function Table(tableId, data, headings) {
             cell.style[key] = this.data[rowIndex][this.order[colIndex]].style[key];
           }
         }
+        
+        // Make editable
+        if (!this.data[rowIndex][this.order[colIndex]].frozen) {
+          cell.setAttribute("contenteditable", true);
+        }
       }
     }
   };
