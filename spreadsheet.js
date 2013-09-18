@@ -124,6 +124,7 @@ function Table(tableId, data, headings) {
   };
   
   this.updateCell = function (cell, row, key) {
+    cell.innerHTML = "";
     var editContent = document.createElement("span");
     cell.appendChild(editContent);
     editContent.innerHTML = this.format(row, key);
