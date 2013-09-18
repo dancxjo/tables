@@ -114,8 +114,8 @@ function Table(tableId, data, headings) {
         var cell = row.insertCell(colIndex);
         cell.table = this;
         cell.row = rowIndex;
-        cell.column = this.order[colIndex];
-        cell.key = colIndex;
+        cell.key = this.order[colIndex];
+        cell.column = colIndex;
         cell.innerHTML = this.format(rowIndex, this.order[colIndex]);
         
         // Do styling
@@ -132,7 +132,7 @@ function Table(tableId, data, headings) {
           cell.onkeypress = function(event) {
               var key = event.keyCode || event.charCode;
               if (key == 13) {
-                  alert(this.row + " " + this.key);
+                  // Store the new value in the data
                   this.table.data[this.row][this.key] = this.innerHTML;
                   this.blur();
                   return false;
@@ -143,6 +143,7 @@ function Table(tableId, data, headings) {
           cell.onkeyup = function(event) {
               var key = event.keyCode || event.charCode;
               if (key == 27) {
+                  // Discard change
                   this.innerHTML = this.table.data[this.row][this.key];
                   this.blur();
                   return false;
