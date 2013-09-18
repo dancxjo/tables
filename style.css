@@ -1,0 +1,10 @@
+#spreadsheet th {
+	cursor: pointer;
+	background: #ddd;
+	font-weight: normal;
+}
+
+#spreadsheet th.sorted {
+	font-weight: bold;
+	background: #ccc;
+}
