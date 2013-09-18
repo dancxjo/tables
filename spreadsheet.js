@@ -112,6 +112,10 @@ function Table(tableId, data, headings) {
       var row = this.table.insertRow(-1);
       for (var colIndex in this.order) {
         var cell = row.insertCell(colIndex);
+        cell.table = this;
+        cell.row = rowIndex;
+        cell.column = this.order[colIndex];
+        cell.key = colIndex;
         cell.innerHTML = this.format(rowIndex, this.order[colIndex]);
         
         // Do styling
@@ -125,10 +129,16 @@ function Table(tableId, data, headings) {
         if (!this.data[rowIndex][this.order[colIndex]].frozen) {
           cell.setAttribute("contenteditable", true);
           cell.onkeypress = function(event) {
-              if (event.keyCode == 13 || event.charCode == 13) {
+              var key = event.keyCode || event.charCode;
+              switch (key) {
+                case 13:
+                  this.table.data[this.row][this.key] = this.innerHTML;
+                case 27:
+                  this.innerHTML = this.table.data[this.row][this.key];
                   this.blur();
                   return false;
-              } 
+                  break;
+              }
           };
         }
       }
