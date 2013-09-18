@@ -115,7 +115,7 @@ function Table(tableId, data, headings) {
         cell.innerHTML = this.format(rowIndex, this.order[colIndex]);
         
         // Do styling
-        if (this.data[row][col].style === undefined) {
+        if (this.data[rowIndex][colIndex].style !== undefined) {
           for (var key in this.data[rowIndex][colIndex].style) {
             cell.style[key] = value;
           }
