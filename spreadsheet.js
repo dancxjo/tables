@@ -126,8 +126,7 @@ function Table(tableId, data, headings) {
           cell.setAttribute("contenteditable", true);
           cell.onkeydown = function(event) {
               if (event.keyCode == 13 || event.charCode == 13) {
-                  alert("Pressed enter");
-                  return false;
+                  return true;
               } 
           };
         }
