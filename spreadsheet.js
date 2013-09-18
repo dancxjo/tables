@@ -128,7 +128,7 @@ function Table(tableId, data, headings) {
         // Make editable
         if (!this.data[rowIndex][this.order[colIndex]].frozen) {
           cell.setAttribute("contenteditable", true);
-          cell.onkeypress = function(event) {
+          cell.onkeyup = function(event) {
               var key = event.keyCode || event.charCode;
               switch (key) {
                 case 13:
