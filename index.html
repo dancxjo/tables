@@ -18,20 +18,12 @@
           {firstname:"Jackie", lastname:"Jackson", birthdate:new Date(1990,2,10,0,0,0), eyecolor:"brown"}
         ];
         var table = new Table("table1", data, headings);
-        table.data[0].birthdate.format = function (date) {
-          month = date.getMonth() + 1;
-          day = date.getDate();
-          year = date.getFullYear();
-          return month + "/" + day + "/" + year;
-        }; 
-        /*
         table.formatColumn("birthdate", function (date) {
           month = date.getMonth() + 1;
           day = date.getDate();
           year = date.getFullYear();
           return month + "/" + day + "/" + year;
         });
-        */
       </script>
     </section>
   </body>
