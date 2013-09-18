@@ -8,13 +8,22 @@
   <body>
     <section>
       <h1>A Simple Table</h1>
+      <p>The following table is a demonstration of my javascript library. It features the following:
+        <ul>
+          <li>Column sorting</li>
+          <li>Editable contents</li>
+          <li>Custom formatting -- custom functions are used to format the date properly</li>
+          <li>Custom styling</li>
+        </ul>
+        The library is compatible across most major browsers.
+      </p>
       <table id="table1"></table>
       <script>
         var headings = {firstname:"First", lastname:"Last", birthdate:"Birthdate", eyecolor:"Eye Color"};
         var data = [
           {firstname:{content:"John"}, lastname:{content:"Smith"}, birthdate:{content:new Date(1942,3,1,0,0,0)}, eyecolor:{content:"blue", style:{color:"blue"}}},
           {firstname:{content:"Adam"}, lastname:{content:"Johanson"}, birthdate:{content:new Date(1967,6,17,0,0,0)}, eyecolor:{content:"brown"}},
-          {firstname:{content:"Ian"}, lastname:{content:"McPherson"}, birthdate:{content:new Date(1931,1,30,0,0,0)}, eyecolor:{content:"green"}},
+          {firstname:{content:"Ian", style:{fontSize:"2em"}}, lastname:{content:"McPherson"}, birthdate:{content:new Date(1931,1,30,0,0,0)}, eyecolor:{content:"green"}},
           {firstname:{content:"Zeke"}, lastname:{content:"Yesler"}, birthdate:{content:new Date(1990,2,10,0,0,0)}, eyecolor:{content:"brown"}}
         ];
         var table = new Table("table1", data, headings);
