@@ -164,10 +164,16 @@ function Table(tableId, data, headings) {
   
   this.format = function (row, key) {
     // Takes data at row,col and formats it
+    var content = this.data[row][key].content;
     if (this.data[row][key].format === undefined) {
-      return this.data[row][key].content;
+      return content;
     } else {
-      return this.data[row][key].format(this.data[row][key].content);
+      try {
+        var formatted = this.data[row][key].format(this.data[row][key].content);
+        return formatted;
+      } catch (err) {
+        return "#ERROR:" + err;
+      }
     }
   }
   
