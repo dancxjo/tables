@@ -39,7 +39,7 @@ function Table(tableId, data, headings) {
     this.update();
   }
   
-  this.formatRow = function (row, key, value) {
+  this.styleRow = function (row, key, value) {
     for (var col in this.data[row]) {
       this.initStyle(row, col);
       this.data[row][col].style[key] = value;
@@ -47,7 +47,7 @@ function Table(tableId, data, headings) {
     this.update();
   }
   
-  this.formatColumn = function (col, key, value) {
+  this.styleColumn = function (col, key, value) {
     for (var row in this.data) {
       this.initStyle(row, col);
       this.data[row][col].style[key] = value;
