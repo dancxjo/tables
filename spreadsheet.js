@@ -131,6 +131,8 @@ function Table(tableId, data, headings) {
                   var style = this.table.data[this.row][this.key].style;
                   var format = this.table.data[this.row][this.key].format;
                   
+                  alert(this.table.data[this.row][this.key].style);
+                  alert(style);
                   // Overwrite the content
                   this.table.data[this.row][this.key] = this.innerHTML;
                   
