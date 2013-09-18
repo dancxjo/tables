@@ -1,4 +1,4 @@
-#spreadsheet th {
+#spreadsheet thead td, #spreadsheet th {
 	cursor: pointer;
 	background: #ddd;
 	font-weight: normal;
