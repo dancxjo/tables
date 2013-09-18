@@ -29,7 +29,7 @@ function Table(tableId, data, headings) {
     
     // Now add the data
     for (var rowIndex in this.data) {
-      var row = this.table.insertRow(rowIndex + 1);
+      var row = this.table.insertRow(-1);
       for (var colIndex in this.order) {
         var cell = row.insertCell(colIndex);
         cell.innerHTML = this.data[rowIndex][this.order[colIndex]];
