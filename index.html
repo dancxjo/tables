@@ -10,13 +10,14 @@
       <h1>A Simple Table</h1>
       <table id="table1"></table>
       <script>
+        var headings = {firstname:"First", lastname:"Last", age:"Age", eyecolor:"Eye Color"};
         var data = [
           {firstname:"John", lastname:"Smith", age:25, eyecolor:"blue"},
           {firstname:"Jane", lastname:"Johson", age:32, eyecolor:"brown"},
           {firstname:"Ian", lastname:"McPherson", age:12, eyecolor:"green"},
           {firstname:"Jackie", lastname:"Jackson", age:72, eyecolor:"brown"}
         ];
-        var table = new Table("table1", data);
+        var table = new Table("table1", data, headings);
       </script>
     </section>
   </body>
