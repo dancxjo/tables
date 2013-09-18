@@ -6,7 +6,9 @@
 	padding: 3px;
 	border: 1px solid #ddd;
 }
+
 .spreadsheet th {
+	background: #efefef;
 	cursor: pointer;
 	border-bottom: 2px solid #22f;
 }
