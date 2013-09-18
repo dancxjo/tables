@@ -2,6 +2,9 @@
 	border-collapse: collapse;
 }
 
+.spreadsheet td {
+	padding: 3px;
+}
 .spreadsheet th {
 	cursor: pointer;
 	border-bottom: 2px solid #22f;
