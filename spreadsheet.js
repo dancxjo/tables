@@ -133,7 +133,18 @@ function Table(tableId, data, headings) {
               var key = event.keyCode || event.charCode;
               if (key == 13) {
                   // Store the new value in the data
+                  
+                  // Save the style and formatting
+                  var style = this.table.data[this.row][this.key].style;
+                  var format = this.table.data[this.row][this.key].format;
+                  
+                  // Overwrite the content
                   this.table.data[this.row][this.key] = this.innerHTML;
+                  
+                  // Now restore the formatting and style
+                  this.table.data[this.row][this.key].style = style;
+                  this.table.data[this.row][this.key].format = format;
+
                   this.blur();
                   return false;
               }
