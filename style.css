@@ -7,5 +7,9 @@
 }
 
 .spreadsheet th.sorted:after {
-	content: \009660;
+	content: " >";
+}
+
+.spreadsheet th.sorted.reversed:after {
+	content: " <";
 }
