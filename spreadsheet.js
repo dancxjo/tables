@@ -133,20 +133,15 @@ function Table(tableId, data, headings) {
                   // Store the new value in the data
                   
                   // Save the style and formatting
-                  var style = this.table.data[this.row][this.key].style;
+                  var style = this.table.data[this.row][this.key].style.slice(0);
                   var format = this.table.data[this.row][this.key].format;
-                  
-                  alert(this.table.data[this.row][this.key].style);
-                  alert(style);
+
                   // Overwrite the content
                   this.table.data[this.row][this.key] = this.innerHTML;
                   
                   // Now restore the formatting and style
-                  this.table.data[this.row][this.key].style = style;
+                  this.table.data[this.row][this.key].style = style.slice(0);
                   this.table.data[this.row][this.key].format = format;
-
-                  alert(format);
-                  alert(style);
 
                   this.blur();
                   
