@@ -56,7 +56,7 @@ function Table(tableId, data, headings) {
       if (a[sortCol] == b[sortCol]) return  0;
       if (a[sortCol] >  b[sortCol]) return  1;
     });
-    if (this.data.revSort) {
+    if (this.revSort) {
       this.data.reverse();
     }
     
