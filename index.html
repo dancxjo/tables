@@ -28,7 +28,7 @@
           this.died = {content:new Date(died[2], died[0], died[1],0,0,0), format:slashDateUS};
           this.age = {content:died - born};
           this.breed = {content:breed};
-          this.country = {content:country};
+          this.country = {content:country, format:showFlag};
         }
         
         // A helper for displaying dates
@@ -38,27 +38,41 @@
           year = date.getFullYear();
           return month + "/" + day + "/" + year;
         }
+        
+        // A helper for displaying countries
+        var codes = {
+          us: ["United States", "http://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/23px-Flag_of_the_United_States.svg.png"],
+          uk: ["United Kingdom","http://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/23px-Flag_of_the_United_Kingdom.svg.png"],
+          ja: ["Japan",         "http://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/23px-Flag_of_Japan.svg.png"],
+          au: ["Australia",     "http://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Flag_of_Australia.svg/23px-Flag_of_Australia.svg.png"],
+          it: ["Italy",         "http://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/23px-Flag_of_Italy.svg.png"],
+          po: ["Poland",        "http://upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/23px-Flag_of_Poland.svg.png"]
+        };
+        
+        function showFlag(code) {
+          return "<img src='"+codes[code][1]+"'/>"+codes[code][0];
+        }
       
         var headings = {name:"Name", born:"Born", died:"Died", age:"Age", breed:"Breed", country:"Country of Origin"};
         var data = [
-          new Dog("Max",             [ 8, 9,1983], [5,18,2013], "Terrier", "us"),
-          new Dog("Bella",           [1, 1,1982], [9,6,2008], "Labrador cross", "uk"),
-          new Dog("Bluey",           [6, 7,1910], [11,14,1939], "Australian Cattle Dog", "au"),
-          new Dog("Lady",            [1, 1,1908], [8,6,1937], "Poodle", "us"),
-          new Dog("Minius",          [1,16,1985], [9,18,2013], "Cross-breed", "po"),
-          new Dog("Bramble",         [9, 1,1975], [3,31,2003], "Border Collie", "uk"),
-          new Dog("Adjutant",        [8,14,1936], [11,20,1963], "Labrador cross", "uk"),
-          new Dog("Butch",           [1, 1,1975], [1,1,2003], "Beagle", "us"),
-          new Dog("Smokey",          [1,18,1986], [5,18,2013], "Terrier", "us"),
-          new Dog("Pusuke",          [4, 1,1985], [5,18,2013], "Terrier", "us"),
-          new Dog("Sugar",           [8,18,1952], [5,18,2013], "Terrier", "us"),
-          new Dog("Bricciola",       [3, 1,1989], [5,18,2013], "Terrier", "us"),
-          new Dog("Piccolo",        [10, 1,1987], [5,18,2013], "Terrier", "us"),
-          new Dog("Kathey T. Dog",   [1, 8,1991], [5,18,2013], "Terrier", "us"),
-          new Dog("Chanel",          [ 5, 1,1988], [5,18,2013], "Terrier", "us"),
-          new Dog("Winston Rha",     [12,12,1992], [5,18,2013], "Terrier", "us"),
-          new Dog("Schoep",          [ 7,18,1993], [5,18,2013], "Terrier", "us"),
-          new Dog("Libby Sheffield", [ 7,15,1992], [5,18,2013], "Terrier", "us")
+          new Dog("Max",             [ 8, 9,1983], [ 5,18,2013], "Terrier", "us"),
+          new Dog("Bella",           [ 1, 1,1982], [ 9, 6,2008], "Labrador cross", "uk"),
+          new Dog("Bluey",           [ 6, 7,1910], [11,14,1939], "Australian Cattle Dog", "au"),
+          new Dog("Lady",            [ 1, 1,1908], [ 8, 6,1937], "Poodle", "us"),
+          new Dog("Minius",          [ 1,16,1985], [ 9,18,2013], "Cross-breed", "po"),
+          new Dog("Bramble",         [ 9, 1,1975], [ 3,31,2003], "Border Collie", "uk"),
+          new Dog("Adjutant",        [ 8,14,1936], [11,20,1963], "Labrador cross", "uk"),
+          new Dog("Butch",           [ 1, 1,1975], [ 1, 1,2003], "Beagle", "us"),
+          new Dog("Smokey",          [ 1,18,1986], [ 9,18,2013], "Shih Tzu", "us"),
+          new Dog("Pusuke",          [ 4, 1,1985], [12, 5,2011], "Cross-breed", "ja"),
+          new Dog("Sugar",           [ 8,18,1952], [ 8,13,1977], "Unknown", "us"),
+          new Dog("Bricciola",       [ 3, 1,1989], [ 9,18,2013], "Mutt", "it"),
+          new Dog("Piccolo",         [10, 1,1987], [12,26,2010], "Mutt", "it"),
+          new Dog("Kathey T. Dog",   [ 1, 8,1991], [ 2, 6,2013], "Mutt", "us"),
+          new Dog("Chanel",          [ 5, 1,1988], [ 8,28,2009], "Dachshund", "us"),
+          new Dog("Winston Rha",     [12,12,1992], [ 5,15,2013], "Schnauzer Poodle mix", "us"),
+          new Dog("Schoep",          [ 7,18,1993], [ 7,18,2013], "Shepherd mix", "us"),
+          new Dog("Libby Sheffield", [ 7,15,1992], [ 9,13,2013], "Mutt", "us")
         ];
         var table = new Table("table1", data, headings);
       </script>
