@@ -66,7 +66,7 @@ function Table(tableId, data, headings) {
       for (var colIndex in this.order) {
         var cell = row.insertCell(colIndex);
         //cell.innerHTML = this.data[rowIndex][this.order[colIndex]];
-        cell.innerHTML = this.format(rowIndex, this.order[colIndex);
+        cell.innerHTML = this.format(rowIndex, this.order[colIndex]);
       }
     }
   };
