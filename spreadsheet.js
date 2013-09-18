@@ -25,8 +25,20 @@ function Table(tableId, data, headings) {
       cell.table = this;
       
       cell.onclick = function () {
-        alert("Clicked column header");
-        alert(this.index);
+        if (this.table.sortCol != this.index) {
+          this.table.sortCol = this.index;
+          this.table.revSort = false;
+        } else {
+          this.table.revSort = !this.table.revSort;
+        }
+        this.table.update();
+      }
+      
+      if (this.sortCol == index) {
+        cell.className += " sorted";
+        if (this.revSort) {
+          cell.className += " reversed";
+        }
       }
       
       this.order.push(index);
