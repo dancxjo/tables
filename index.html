@@ -26,7 +26,7 @@
           this.name = {content:name};
           this.born = {content:new Date(born[2], born[0], born[1],0,0,0), format:slashDateUS};
           this.died = {content:new Date(died[2], died[0], died[1],0,0,0), format:slashDateUS};
-          this.age = {content:this.died.content - this.born.content, format:function(diff) {return Math.round(diff/(1000*60*60*24)/365.25, 0);}};
+          this.age = {content:this.died.content - this.born.content, format:function(diff) {return Math.floor(diff/(1000*60*60*24)/365.25);}};
           this.breed = {content:breed};
           this.country = {content:country, format:showFlag};
         }
@@ -53,7 +53,7 @@
           return "<img src='"+codes[code][1]+"'/> "+codes[code][0];
         }
       
-        var headings = {name:"Name", born:"Born", died:"Died", age:"Approximate Age (in years)", breed:"Breed", country:"Country of Origin"};
+        var headings = {name:"Name", born:"Born", died:"Died", age:"Age (in years)", breed:"Breed", country:"Country of Origin"};
         var data = [
           new Dog("Max",             [ 8, 9,1983], [ 5,18,2013], "Terrier", "us"),
           new Dog("Bella",           [ 1, 1,1982], [ 9, 6,2008], "Labrador cross", "uk"),
@@ -75,6 +75,9 @@
           new Dog("Libby Sheffield", [ 7,15,1992], [ 9,13,2013], "Mutt", "us")
         ];
         var table = new Table("table1", data, headings);
+        table.styleColumn("born", {textAlign:right});
+        table.styleColumn("died", {textAlign:right});
+        table.styleColumn("age", {textAlign:right});
       </script>
     </section>
   </body>
