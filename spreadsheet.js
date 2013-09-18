@@ -130,6 +130,11 @@ function Table(tableId, data, headings) {
     this.styleCell(cell, row, key);
     // Make editable
     if (!this.data[row][key].frozen) {
+      editContent.table = this;
+      editContent.cell = cell;
+      editContent.row = row;
+      editContent.key = key;
+
       editContent.setAttribute("contenteditable", true);
       // One function for enter
       editContent.onkeypress = function(event) {
