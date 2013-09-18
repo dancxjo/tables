@@ -10,12 +10,12 @@
       <h1>A Simple Table</h1>
       <table id="table1"></table>
       <script>
-        var headings = {firstname:"First", lastname:"Last", age:"Age", eyecolor:"Eye Color"};
+        var headings = {firstname:"First", lastname:"Last", birthdate:"Birthdate", eyecolor:"Eye Color"};
         var data = [
-          {firstname:"John", lastname:"Smith", age:25, eyecolor:"blue"},
-          {firstname:"Jane", lastname:"Johson", age:32, eyecolor:"brown"},
-          {firstname:"Ian", lastname:"McPherson", age:12, eyecolor:"green"},
-          {firstname:"Jackie", lastname:"Jackson", age:72, eyecolor:"brown"}
+          {firstname:"John", lastname:"Smith", birthdate:new Date(1942,3,1,0,0,0), eyecolor:"blue"},
+          {firstname:"Jane", lastname:"Johson", birthdate:new Date(1967,6,17,0,0,0), eyecolor:"brown"},
+          {firstname:"Ian", lastname:"McPherson", birthdate:new Date(1931,1,30,0,0,0), eyecolor:"green"},
+          {firstname:"Jackie", lastname:"Jackson", birthdate:new Date(1990,2,10,0,0,0), eyecolor:"brown"}
         ];
         var table = new Table("table1", data, headings);
       </script>
