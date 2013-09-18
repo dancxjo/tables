@@ -172,7 +172,8 @@ function Table(tableId, data, headings) {
         var formatted = this.data[row][key].format(this.data[row][key].content);
         return formatted;
       } catch (err) {
-        return "#ERROR:" + err;
+        return content;
+        //alert("#ERROR: " + err);
       }
     }
   }
