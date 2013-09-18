@@ -19,7 +19,7 @@ function Table(tableId, data, headings) {
       var cell = document.createElement("th");
       row.appendChild(cell);
       cell.innerHTML = this.headings[index];
-      this.order[row.cells.length-1] = index;
+      this.order.push(index);
     }
   }
   
