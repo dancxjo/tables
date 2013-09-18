@@ -117,7 +117,7 @@ function Table(tableId, data, headings) {
         // Do styling
         if (this.data[rowIndex][this.order[colIndex]].style !== undefined) {
           for (var key in this.data[rowIndex][this.order[colIndex]].style) {
-            cell.style[key] = value;
+            cell.style[key] = this.data[rowIndex][this.order[colIndex]].style[key];
           }
         }
       }
