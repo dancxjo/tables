@@ -13,9 +13,44 @@ function Table(tableId, data, headings) {
     this.update();
   }
   
+  this.formatRow = function (row, formatFunc) {
+    for (var col in this.data[row]) {
+      this.data[row][col].format = formatFunc;
+    }
+    this.update();
+  }
+  
   this.formatColumn = function (col, formatFunc) {
     for (var row in this.data) {
       this.data[row][col].format = formatFunc;
+    }
+    this.update();
+  }
+  
+  this.initStyle = function (row, col) {
+    if (this.data[row][col].style === undefined) {
+      this.data[row][col].style = new Array();
+    }
+  }
+  
+  this.styleCell = function (row, col, key, value) {
+    this.initStyle(row, col);
+    this.data[row][col].style[key] = value;
+    this.update();
+  }
+  
+  this.formatRow = function (row, key, value) {
+    for (var col in this.data[row]) {
+      this.initStyle(row, col);
+      this.data[row][col].style[key] = value;
+    }
+    this.update();
+  }
+  
+  this.formatColumn = function (col, key, value) {
+    for (var row in this.data) {
+      this.initStyle(row, col);
+      this.data[row][col].style[key] = value;
     }
     this.update();
   }
@@ -79,6 +114,9 @@ function Table(tableId, data, headings) {
         var cell = row.insertCell(colIndex);
         //cell.innerHTML = this.data[rowIndex][this.order[colIndex]];
         cell.innerHTML = this.format(rowIndex, this.order[colIndex]);
+        for (var key in this.data[rowIndex][colIndex].style) {
+          cell.style[key] = value;
+        }
       }
     }
   };
