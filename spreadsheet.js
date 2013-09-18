@@ -3,7 +3,7 @@ function Table(tableId, data, headings) {
   this.data = data;
   this.headings = headings; // firstname: "First Name", lastname: "Last Name"...
   this.order = new Array(); // 0: firstname 1: lastname...
-  this.sortCol = -1;
+  this.sortCol = null;
   this.revSort = false;
   
   this.table.className += " spreadsheet";
@@ -80,8 +80,16 @@ function Table(tableId, data, headings) {
         if (this.table.sortCol != this.index) {
           this.table.sortCol = this.index;
           this.table.revSort = false;
+              // Do the sorting
+          var sortCol = this.index;
+          this.table.data.sort(function (a, b) {
+            if (a[sortCol].content <  b[sortCol].content) return -1;
+            if (a[sortCol].content == b[sortCol].content) return  0;
+            if (a[sortCol].content >  b[sortCol].content) return  1;
+          });
         } else {
           this.table.revSort = !this.table.revSort;
+          this.data.reverse();
         }
         this.table.update();
       }
@@ -100,18 +108,7 @@ function Table(tableId, data, headings) {
   this.update = function () {
     this.clear(); // Erase what's already in the table
     this.makeHeadings(); // Make the headingings
-    
-    // Do the sorting
-    var sortCol = this.sortCol;
-    this.data.sort(function (a, b) {
-      if (a[sortCol].content <  b[sortCol].content) return -1;
-      if (a[sortCol].content == b[sortCol].content) return  0;
-      if (a[sortCol].content >  b[sortCol].content) return  1;
-    });
-    if (this.revSort) {
-      this.data.reverse();
-    }
-    
+
     // Now add the data
     for (var rowIndex in this.data) {
       var row = this.table.insertRow(-1);
