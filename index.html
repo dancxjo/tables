@@ -7,7 +7,7 @@
   </head>
   <body>
     <section>
-      <h1>A Simple Table</h1>
+      <h1>List of oldest dogs</h1>
       <p>The following table is a demonstration of my javascript library. It features the following:
         <ul>
           <li>Column sorting</li>
@@ -17,24 +17,50 @@
         </ul>
         The library is compatible across most major browsers.
       </p>
+      
       <table id="table1"></table>
+      <p>Source: <a href="http://en.wikipedia.org/wiki/List_of_oldest_dogs">Wikipedia</a></p>
       <script>
-        var headings = {firstname:"First", lastname:"Last", birthdate:"Birthdate", eyecolor:"Eye Color"};
-        var data = [
-          {firstname:{content:"John"}, lastname:{content:"Smith"}, birthdate:{content:new Date(1942,3,1,0,0,0)}, eyecolor:{content:"blue", style:{color:"blue"}}},
-          {firstname:{content:"Adam"}, lastname:{content:"Johanson"}, birthdate:{content:new Date(1967,6,17,0,0,0)}, eyecolor:{content:"brown"}},
-          {firstname:{content:"Ian", style:{fontSize:"2em"}}, lastname:{content:"McPherson"}, birthdate:{content:new Date(1931,1,30,0,0,0)}, eyecolor:{content:"green"}},
-          {firstname:{content:"Zeke"}, lastname:{content:"Yesler"}, birthdate:{content:new Date(1990,2,10,0,0,0)}, eyecolor:{content:"brown"}}
-        ];
-        var table = new Table("table1", data, headings);
-        table.formatColumn("birthdate", function (date) {
+        // We'll be listing dogs
+        function Dog(name, born, died, breed, country) {
+          this.name = {content:name};
+          this.born = {content:new Date(born[2], born[0], born[1],0,0,0), format:slashDateUS};
+          this.died = {content:new Date(died[2], died[0], died[1],0,0,0), format:slashDateUS};
+          this.age = {content:died - born};
+          this.breed = {content:breed};
+          this.country = {content:country};
+        }
+        
+        // A helper for displaying dates
+        function slashDateUS(date) {
           month = date.getMonth() + 1;
           day = date.getDate();
           year = date.getFullYear();
           return month + "/" + day + "/" + year;
-        });
-        table.styleColumn("birthdate", "textAlign", "right");
-        table.styleColumn("firstname", "color", "green");
+        }
+      
+        var headings = {name:"Name", born:"Born", died:"Died", age:"Age", breed:"Breed", country:"Country of Origin"};
+        var data = [
+          new Dog("Max",             { 8, 9,1983}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Bella",           { 1, 1,1982}, {9,6,2008}, "Labrador cross", "uk"),
+          new Dog("Bluey",           { 6, 7,1910}, {11,14,1939}, "Australian Cattle Dog", "au"),
+          new Dog("Lady",            { 1, 1,1908}, {8,6,1937}, "Poodle", "us"),
+          new Dog("Minius",          { 1,16,1985}, {9,18,2013}, "Cross-breed", "po"),
+          new Dog("Bramble",         { 9, 1,1975}, {3,31,2003}, "Border Collie", "uk"),
+          new Dog("Adjutant",        { 8,14,1936}, {11,20,1963}, "Labrador cross", "uk"),
+          new Dog("Butch",           { 1, 1,1975}, {1,1,2003}, "Beagle", "us"),
+          new Dog("Smokey",          { 1,18,1986}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Pusuke",          { 4, 1,1985}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Sugar",           { 8,18,1952}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Bricciola",       { 3, 1,1989}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Piccolo",         {10, 1,1987}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Kathey T. Dog",   { 1, 8,1991}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Chanel",          { 5, 1,1988}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Winston Rha",     {12,12,1992}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Schoep",          { 7,18,1993}, {5,18,2013}, "Terrier", "us"),
+          new Dog("Libby Sheffield", { 7,15,1992}, {5,18,2013}, "Terrier", "us")
+        ];
+        var table = new Table("table1", data, headings);
       </script>
     </section>
   </body>
