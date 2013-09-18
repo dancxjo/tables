@@ -25,6 +25,7 @@ function Table(tableId, data, headings) {
       cell.table = this;
       
       cell.onclick = function () {
+        alert("Clicked column header");
         alert(this.index);
       }
       
