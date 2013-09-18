@@ -7,7 +7,7 @@
 }
 
 .spreadsheet th.sorted:after {
-	content: " \25bc";
+	content: " \25be";
 }
 
 .spreadsheet th.sorted.reversed:after {
