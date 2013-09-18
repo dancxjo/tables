@@ -149,6 +149,12 @@ function Table(tableId, data, headings) {
               
               return false;
           }
+          if (key == 27) {
+              // Discard change
+              this.table.updateCell(this, this.row, this.key);
+              this.blur();
+              return false;
+          }
       };
 
       // Another for escape
