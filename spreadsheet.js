@@ -5,15 +5,15 @@ function Table(tableId, data, headings) {
   
   this.clear = function () {
     for (var index=this.table.rows.length - 1; index >= 0; index--) {
-			this.table.deleteRow(index);
-		}
+    	this.table.deleteRow(index);
+  	}
   };
   
   this.makeHeadings = function () {
-    var row = this.table.createTHead(0);
+    var header = this.table.createTHead();
+    var row = this.table.insertRow(0);
     for (var index in this.headings) {
-      alert(index);
-      var cell = row.insertCell(index);
+      var cell = row.insertCell(-1);
       cell.innerHTML = this.headings[index];
     }
   }
