@@ -89,7 +89,7 @@ function Table(tableId, data, headings) {
           });
         } else {
           this.table.revSort = !this.table.revSort;
-          this.data.reverse();
+          this.table.data.reverse();
         }
         this.table.update();
       }
