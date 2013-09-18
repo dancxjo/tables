@@ -104,9 +104,9 @@ function Table(tableId, data, headings) {
     // Do the sorting
     var sortCol = this.sortCol;
     this.data.sort(function (a, b) {
-      if (a[sortCol] <  b[sortCol]) return -1;
-      if (a[sortCol] == b[sortCol]) return  0;
-      if (a[sortCol] >  b[sortCol]) return  1;
+      if (a[sortCol].content <  b[sortCol].content) return -1;
+      if (a[sortCol].content == b[sortCol].content) return  0;
+      if (a[sortCol].content >  b[sortCol].content) return  1;
     });
     if (this.revSort) {
       this.data.reverse();
