@@ -50,7 +50,7 @@ function Table(tableId, data, headings) {
   this.styleColumn = function (key, attr, value) {
     for (var row in this.data) {
       this.initStyle(row, key);
-      this.data[row][col].styling[attr] = value;
+      this.data[row][key].styling[attr] = value;
     }
     this.update();
   }
