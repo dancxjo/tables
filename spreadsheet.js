@@ -178,7 +178,6 @@ function Table(tableId, data, headings) {
       for (var varName in this.data[row]) {
         vars += "var " + varName + "=this."+varName + ".content; ";
       }
-      alert(vars);
       return eval(vars + ";\n" + content.substr(1));
     }
     return content;
