@@ -170,9 +170,18 @@ function Table(tableId, data, headings) {
     }
   }
   
+  this.evaluate = function (row, key) {
+    var content = this.data[row][key].content;
+    if (content.indexOf("=") == 0) {
+      // This is a formula
+      return eval(content.substr(1));
+    }
+    return content;
+  }
+  
   this.format = function (row, key) {
     // Takes data at row,col and formats it
-    var content = this.data[row][key].content;
+    var content = this.evaluate(row, key);
     if (this.data[row][key].format === undefined) {
       return content;
     } else {
