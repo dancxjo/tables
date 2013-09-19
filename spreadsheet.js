@@ -125,7 +125,7 @@ function Table(tableId, data, headings) {
   
   this.updateCell = function (cell, row, key) {
     cell.innerHTML = "";
-    var editContent = document.createElement("span");
+    var editContent = document.createElement("div");
     cell.appendChild(editContent);
     editContent.innerHTML = this.format(row, key);
     this.styleCell(cell, row, key);
@@ -135,23 +135,36 @@ function Table(tableId, data, headings) {
       editContent.cell = cell;
       editContent.row = row;
       editContent.key = key;
+	  editContent.className = "spreadsheet cellcontent";
+	  cell.className = "spreadsheet cell";
 
       editContent.setAttribute("contenteditable", true);
+	  editContent.cancelled = false;
+	  
+	  editContent.onfocus = function(event) {
+		// Fill in just the content
+		this.innerHTML = this.table.data[this.row][this.key].content;
+	  };
+	  
+	  editContent.onblur = function(event) {
+		if (!this.cancelled) {
+			// Overwrite the content
+            this.table.data[this.row][this.key].content = this.innerHTML;
+		}
+		this.table.updateCell(this, this.row, this.key);
+	  };
+	  
       // One function for enter
       editContent.onkeypress = function(event) {
           var key = event.keyCode || event.charCode;
           if (key == 13) {
               // Store the new value in the data
-              // Overwrite the content
-              this.table.data[this.row][this.key].content = this.innerHTML;
               this.blur();
-              this.table.updateCell(this, this.row, this.key);
-              
-              return false;
+			  return false;
           }
           if (key == 27) {
               // Discard change
-              this.table.updateCell(this, this.row, this.key);
+			  this.cancelled = true;
               this.blur();
               return false;
           }
@@ -162,7 +175,7 @@ function Table(tableId, data, headings) {
           var key = event.keyCode || event.charCode;
           if (key == 27) {
               // Discard change
-              this.table.updateCell(this, this.row, this.key);
+              this.cancelled = true;
               this.blur();
               return false;
           }
@@ -174,14 +187,7 @@ function Table(tableId, data, headings) {
     var content = this.data[row][key].content;
     if ("string" == typeof content && content.indexOf("=") == 0) {
       // This is a formula
-      var vars = "";
-      for (var varName in this.data[row]) {
-        vars += "var " + varName + "=this."+varName + ".content; ";
-      }
-      //return eval(vars + ";\n" + content.substr(1));
-      var evalString = vars + "\nreturn (" + content.substr(1) + ");";
-      alert(evalString);
-      return eval(evalString);
+      // TODO: Fill with JISON
     }
     return content;
   }
@@ -196,8 +202,8 @@ function Table(tableId, data, headings) {
         var formatted = this.data[row][key].format(this.data[row][key].content);
         return formatted;
       } catch (err) {
+		alert("#ERROR: " + err);
         return content;
-        //alert("#ERROR: " + err);
       }
     }
   }
