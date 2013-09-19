@@ -174,7 +174,12 @@ function Table(tableId, data, headings) {
     var content = this.data[row][key].content;
     if ("string" == typeof content && content.indexOf("=") == 0) {
       // This is a formula
-      return eval(content.substr(1));
+      var vars = "";
+      for (var varName in this.data[row]) {
+        vars += "var " + varName + "=\""+this.data[row][varName].content + "\"; ";
+      }
+      alert(vars);
+      return eval(vars + ";\n" + content.substr(1));
     }
     return content;
   }
