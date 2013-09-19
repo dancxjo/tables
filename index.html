@@ -23,17 +23,22 @@
       <script>
         // We'll be listing dogs
         function Dog(name, born, died, breed, country) {
+		  
           this.name = {content:name};
-          this.born = {content:new Date(born[2], born[0], born[1],0,0,0), format:slashDateUS};
-          this.died = {content:new Date(died[2], died[0], died[1],0,0,0), format:slashDateUS};
-          this.age = {content:"=died-born", format:function(diff) {return Math.floor(diff/(1000*60*60*24)/365.25);}};
+		  var bDate = new Date(born[2], born[0], born[1],0,0,0);
+          this.born = {content:25569.0 + ((bDate.getTime() - (bDate.getTimezoneOffset() * 60 * 1000)) / (1000 * 60 * 60 * 24)), format:slashDateUS};
+		  var dDate = new Date(died[2], died[0], died[1],0,0,0);
+          this.died = {content:25569.0 + ((dDate.getTime() - (dDate.getTimezoneOffset() * 60 * 1000)) / (1000 * 60 * 60 * 24)), format:slashDateUS};
+          //this.age = {content:"=@died-@born", format:function(diff) {return Math.floor(diff/(1000*60*60*24)/365.25);}};
+		  this.age = {content:Number(dDate - bDate), format:function(diff) {return Math.floor(diff/(1000*60*60*24)/365.25);}};
           this.breed = {content:breed};
           this.country = {content:country, format:showFlag};
         }
         
         // A helper for displaying dates
-        function slashDateUS(date) {
-          month = date.getMonth() + 1;
+        function slashDateUS(number) {
+		  date = new Date((number - (25567 + 1))*86400*1000);
+          month = date.getMonth();
           day = date.getDate();
           year = date.getFullYear();
           return month + "/" + day + "/" + year;
