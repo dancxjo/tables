@@ -172,7 +172,7 @@ function Table(tableId, data, headings) {
   
   this.evaluate = function (row, key) {
     var content = this.data[row][key].content;
-    if (content.indexOf("=") == 0) {
+    if ("string" == typeof content && content.indexOf("=") == 0) {
       // This is a formula
       return eval(content.substr(1));
     }
