@@ -179,7 +179,9 @@ function Table(tableId, data, headings) {
         vars += "var " + varName + "=this."+varName + ".content; ";
       }
       //return eval(vars + ";\n" + content.substr(1));
-      return (vars + ";\n" + content.substr(1));
+      var evalString = vars + ";\n" + content.substr(1);
+      alert(evalString);
+      return eval(evalString);
     }
     return content;
   }
