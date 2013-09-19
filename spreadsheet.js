@@ -176,7 +176,7 @@ function Table(tableId, data, headings) {
       // This is a formula
       var vars = "";
       for (var varName in this.data[row]) {
-        vars += "var " + varName + "=\""+this.data[row][varName].content + "\"; ";
+        vars += "var " + varName + "=this."+varName + ".content; ";
       }
       alert(vars);
       return eval(vars + ";\n" + content.substr(1));
